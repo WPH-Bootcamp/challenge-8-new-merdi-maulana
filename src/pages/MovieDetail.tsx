@@ -10,18 +10,18 @@ import Loader from "../components/Loading";
 
 export function MovieDetail() {
   const { id } = useParams<{ id: string }>();
-  const movieTitle = Number(id);
+  const movieId = Number(id);
   const { isFavorite, toggleFavorite } = useFavorites();
 
   const { data: movie, isLoading: isLoadingMovie } = useQuery({
-    queryKey: ["movie", movieTitle],
-    queryFn: () => getMovieDetail(movieTitle),
-    enabled: !!movieTitle,
+    queryKey: ["movie", movieId],
+    queryFn: () => getMovieDetail(movieId),
+    enabled: !!movieId,
   });
 
   const { data: credits, isLoading: isLoadingCredits } = useQuery({
-    queryKey: ["movie", movieTitle, "credits"],
-    queryFn: () => getMovieCredits(movieTitle),
+    queryKey: ["movie", movieId, "credits"],
+    queryFn: () => getMovieCredits(movieId),
   });
 
   const handleFavorite = () => {

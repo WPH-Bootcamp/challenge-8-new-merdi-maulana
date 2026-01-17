@@ -1,6 +1,5 @@
 import {
   Link,
-  Navigate,
   useNavigate,
   useSearchParams,
   useLocation,
@@ -243,7 +242,7 @@ export function Navbar() {
               autoFocus
               className="border-none outline-none w-full"
             />
-            {searchQuery && <img src={CloseIcon} alt="" />}
+            {searchQuery && <img src={CloseIcon} alt="Clear search" />}
           </form>
         </div>
       )}
