@@ -44,3 +44,11 @@ body {
     background-color: #f9f9f9;
   }
 }
+
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

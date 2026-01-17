@@ -28,8 +28,8 @@ export function MovieCard({ movie }: MovieCardProps) {
           {movie.title}
         </h3>
         <div className="flex gap-2">
-          <span className="text-yellow-400 md:text-[16px">★</span>
-          <span className="text-neutral-400 font-normal md:text-[16px">
+          <span className="text-yellow-400 md:text-[16px]">★</span>
+          <span className="text-neutral-400 font-normal md:text-[16px]">
             {rating} / 10
           </span>
         </div>
@@ -53,23 +53,26 @@ export function FavoriteCard({ movie }: MovieCardProps) {
   return (
     <Link
       to={`/movie/${movie.id}`}
-      // 🔥 Tambahkan 'flex-wrap' agar elemen bisa turun ke baris baru di mobile
-      className="relative rounded-xl flex flex-wrap md:flex-nowrap gap-4 md:gap-6 m-4 overflow-hidden no-underline transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] bg-white/5 p-4 group"
+      className="
+                  relative flex flex-wrap group
+                  md:flex-nowrap
+                  gap-4 md:gap-6 m-4 p-4
+                  rounded-xl overflow-hidden
+                  bg-white/5
+                  no-underline
+                  transition-all duration-300
+                  hover:-translate-y-2 hover:scale-[1.02]
+                "
     >
-      {/* 1. POSTER */}
       <div className="relative w-1/3 md:w-[182px] shrink-0 overflow-hidden rounded-xl">
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
-        {/* Tombol Love Desktop */}
       </div>
 
-      {/* 2. WRAPPER KONTEN (Teks & Tombol) */}
-      {/* 🔥 Gunakan 'contents' agar anak-anaknya (Teks & Baris Tombol) bisa diatur posisinya oleh container utama */}
       <div className="contents md:flex md:flex-col md:flex-1">
-        {/* BAGIAN TEKS (Akan berada di sebelah poster pada mobile) */}
         <div className="flex-1 min-w-0 text-left gap-2 flex flex-col justify-center py-2">
           <h3 className="text-md md:text-2xl font-semibold text-white">
             {movie.title}
@@ -83,8 +86,6 @@ export function FavoriteCard({ movie }: MovieCardProps) {
           </div>
         </div>
 
-        {/* 3. BARIS TOMBOL (Watch Trailer & Love Mobile) */}
-        {/* 🔥 'w-full' membuatnya turun ke bawah poster di mobile, 'md:w-auto' membuatnya balik ke samping di desktop */}
         <div className="w-full md:w-auto flex items-center gap-3 mt-2 md:mt-4 order-last md:order-none">
           <button className="bg-primary-300 cursor-pointer h-11 rounded-full hover:bg-red-700 text-white px-6 flex font-semibold items-center gap-3 justify-center transition-colors flex-1 md:flex-none md:w-48">
             Watch Trailer
@@ -95,7 +96,6 @@ export function FavoriteCard({ movie }: MovieCardProps) {
             </div>
           </button>
 
-          {/* Tombol Love Mobile */}
           <button
             onClick={handleFavorite}
             className="md:hidden flex cursor-pointer items-center shrink-0 justify-center h-11 w-11 rounded-full bg-[#0A0D1299] border border-neutral-800"

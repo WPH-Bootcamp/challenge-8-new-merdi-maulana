@@ -54,7 +54,7 @@ export const searchMovies = async (
   page: number = 1
 ): Promise<MovieResponse> => {
   const response = await api.get<MovieResponse>("/search/movie", {
-    params: { query, page, language: "id-ID" },
+    params: { query, page, language: "en-US" },
   });
   return response.data;
 };

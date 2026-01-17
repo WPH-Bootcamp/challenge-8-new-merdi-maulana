@@ -2,15 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { getMovieDetail, getMovieCredits } from "../lib/api";
 import { useFavorites } from "../context/FavoritesContext";
-import { MovieCard } from "../components/MovieCard";
 import calendar from "../assets/calendar.svg";
-import { Star, Clock, Calendar, Heart, Play, ArrowLeft } from "lucide-react";
+import { Star, Heart } from "lucide-react";
 import emojiHappy from "../assets/emoji-happy.svg";
 import genre from "../assets/Genre.svg";
+import Loader from "../components/Loading";
 
 export function MovieDetail() {
-  const { title } = useParams<{ title: string }>();
-  const movieTitle = Number(title);
+  const { id } = useParams<{ id: string }>();
+  const movieTitle = Number(id);
   const { isFavorite, toggleFavorite } = useFavorites();
 
   const { data: movie, isLoading: isLoadingMovie } = useQuery({
@@ -31,8 +31,8 @@ export function MovieDetail() {
 
   if (isLoadingMovie || isLoadingCredits) {
     return (
-      <div className="flex h-screen items-center justify-center bg-black text-white">
-        Loading Movie...
+      <div className="flex h-screen items-center justify-center bg-black scale-180">
+        <Loader />
       </div>
     );
   }

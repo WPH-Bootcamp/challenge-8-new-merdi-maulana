@@ -13,7 +13,11 @@ export function Favorites() {
       {favorites.length === 0 ? (
         <div className="relative flex flex-col gap-6 items-center justify-center h-screen  ">
           <div className="flex flex-col gap-3 items-center justify-center text-center">
-            <img src={notFoundImg} alt="" className="grayscale-100" />
+            <img
+              src={notFoundImg}
+              alt="Ilustration not found img"
+              className="grayscale-100"
+            />
             <h2 className="font-semibold">Data Empty</h2>
             <p className="text-neutral-400 text-sm">
               You don't have a favorite movie yet

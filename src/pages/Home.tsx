@@ -4,22 +4,19 @@ import { getPopularMovies, getNowPlayingMovies } from "../lib/api";
 import { HeroSection } from "../components/HeroSection";
 import { MovieSlider } from "../components/MovieSlider";
 import { MovieGrid } from "../components/MovieGrid";
+import Loader from "../components/Loading";
 
 export function Home() {
-  // 1. Tambahkan isError dan error untuk menangkap masalah pada Popular Movies
   const {
     data: popularMovies,
     isLoading: isLoadingPopular,
     isError: isErrorPopular,
     error: errorPopular,
   } = useQuery({
-    queryKey: ["movies", "popular"],
+    queryKey: ["movies", "nowPlaying"],
     queryFn: () => getNowPlayingMovies(),
   });
 
-  const [showAll, setShowAll] = useState(false);
-
-  // 2. Tambahkan isError dan error untuk menangkap masalah pada New Release
   const {
     data: newReleaseData,
     isLoading: isLoadingNewRelease,
@@ -29,7 +26,7 @@ export function Home() {
     isError: isErrorNewRelease,
     error: errorNewRelease,
   } = useInfiniteQuery({
-    queryKey: ["movies", "newRelease"], // Tips: Sebaiknya bedakan key ini dengan yang popular di atas
+    queryKey: ["movies", "newRelease"],
     queryFn: ({ pageParam }) => getPopularMovies(pageParam),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
@@ -40,17 +37,14 @@ export function Home() {
     },
   });
 
-  // 3. PERBAIKAN UTAMA: Gunakan || (ATAU).
-  // Jika SALAH SATU sedang loading, tampilkan loading.
   if (isLoadingPopular || isLoadingNewRelease) {
     return (
-      <div className="flex h-screen items-center justify-center bg-black text-white">
-        Loading Movies...
+      <div className="flex h-screen items-center justify-center bg-black scale-180">
+        <Loader />
       </div>
     );
   }
 
-  // 4. Tangani Error. Jika ada error, tampilkan pesan, jangan blank.
   if (isErrorPopular || isErrorNewRelease) {
     return (
       <div className="flex h-screen items-center justify-center bg-black text-red-500">
@@ -64,7 +58,6 @@ export function Home() {
   const allNewReleaseMovies =
     newReleaseData?.pages.flatMap((page) => page.results) || [];
 
-  // 5. Pengecekan data kosong sebelum render
   if (!featuredMovie && allNewReleaseMovies.length === 0) {
     return <div className="text-white p-10">Data tidak ditemukan.</div>;
   }

@@ -84,7 +84,6 @@ export function MovieSlider({ movies }: MovieSliderProps) {
       <div
         ref={sliderRef}
         onScroll={checkScroll}
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         className="flex gap-4 md:gap-5 overflow-x-auto scroll-smooth scrollbar-hide"
       >
         {movies.map((movie, index) => (

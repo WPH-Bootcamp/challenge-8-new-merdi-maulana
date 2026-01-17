@@ -68,7 +68,7 @@ export function Navbar() {
   };
 
   return (
-    <>
+    <header>
       <nav
         className={`fixed top-0 left-0 md:px-30 right-0 h-16 md:h-[90px] z-50 flex justify-between items-center ${
           isScrolled
@@ -247,6 +247,6 @@ export function Navbar() {
           </form>
         </div>
       )}
-    </>
+    </header>
   );
 }
