@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { MovieGridFavorite } from "../components/MovieGrid";
 import { searchMovies } from "../lib/api";
 import notFoundImg from "../assets/Frame 52.svg";
-import { Loader } from "lucide-react";
+import Loader from "../components/Loading";
 
 export function Search() {
   const [searchParams] = useSearchParams();

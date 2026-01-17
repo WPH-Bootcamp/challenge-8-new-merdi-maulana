@@ -48,7 +48,7 @@ export function Home() {
   if (isErrorPopular || isErrorNewRelease) {
     return (
       <div className="flex h-screen items-center justify-center bg-black text-red-500">
-        <p>Error loading movies. Cek Console log.</p>
+        <p>Error loading movies. Please check console for details.</p>
         <p>{errorPopular?.message || errorNewRelease?.message}</p>
       </div>
     );
@@ -59,7 +59,7 @@ export function Home() {
     newReleaseData?.pages.flatMap((page) => page.results) || [];
 
   if (!featuredMovie && allNewReleaseMovies.length === 0) {
-    return <div className="text-white p-10">Data tidak ditemukan.</div>;
+    return <div className="text-white p-10">No data found.</div>;
   }
 
   return (
